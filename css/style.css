@@ -1,0 +1,113 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.main-menu {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.content {
+    display: flex;
+    height: 100%;
+}
+
+.filters {
+    display: flex; /* Змінено на flex для розташування в рядок */
+    flex-direction: row; /* Розташування фільтрів у рядок */
+    gap: 10px;
+    background-color: #f4f4f4;
+    padding: 10px;
+    width: 50%; /* Ліва частина займає 50% */
+    overflow-y: auto;
+}
+
+.filter {
+    flex: 1; /* Кожен стовпчик займає однакову ширину */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.filter h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.filter ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filter li {
+    padding: 5px;
+    background-color: #eee;
+    margin-bottom: 5px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.filter li:hover {
+    background-color: #ddd;
+}
+
+.gallery {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f0f0f0;
+    width: 50%; /* Права частина займає 50% */
+    overflow-y: auto;
+}
+
+.gallery-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.gallery-item {
+    width: 200px;
+    height: 150px;
+    background-color: #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-item p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0 0;
+}
