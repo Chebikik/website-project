@@ -48,26 +48,36 @@ function populateList(selector, items, type) {
 function displayGallery(data) {
     const galleryContainer = document.querySelector('.gallery-items');
     galleryContainer.innerHTML = '';
+
+    const validData = {}; // Об'єкт для збереження валідних зображень
+
     Object.entries(data).forEach(([key, value]) => {
-        const galleryItem = document.createElement('div');
-        galleryItem.className = 'gallery-item';
-
-        const img = document.createElement('img');
+        const img = new Image();
         img.src = value;
-        img.alt = key;
 
-        // Видаляємо елемент, якщо зображення не завантажується
-        img.onerror = () => {
-            galleryItem.remove();
+        img.onload = () => {
+            if (img.naturalWidth > 1 && img.naturalHeight > 1) {
+                validData[key] = value; // Додаємо тільки валідні зображення
+
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+
+                const imgElement = document.createElement('img');
+                imgElement.src = value;
+                imgElement.alt = key;
+
+                galleryItem.appendChild(imgElement);
+                galleryContainer.appendChild(galleryItem);
+            }
         };
 
-        const caption = document.createElement('p');
-        caption.textContent = key;
-
-        galleryItem.appendChild(img);
-        galleryItem.appendChild(caption);
-        galleryContainer.appendChild(galleryItem);
+        img.onerror = () => {
+            console.warn(`Image failed to load: ${value}`);
+        };
     });
+
+    // Повертаємо тільки валідні дані
+    return validData;
 }
 
 function filterGallery(data, filterType, filterValue) {
@@ -81,3 +91,4 @@ function filterGallery(data, filterType, filterValue) {
 
     displayGallery(Object.fromEntries(filteredData));
 }
+
